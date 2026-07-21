@@ -1,10 +1,14 @@
 /* Accountabuddy — service worker (offline shell + installable) */
-const CACHE = 'aab-v1';
+const CACHE = 'aab-v2';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './supabase.js',
   './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon-180.png',
+  // Cozy theme
   './images/squad.png', './images/cozy-window.jpg', './images/sleep-meme.jpg',
-  './images/latte.jpg', './images/future-self.jpg'
+  './images/latte.jpg', './images/future-self.jpg',
+  // Focus theme
+  './images/focus-desk.jpg', './images/focus-gym.jpg', './images/focus-campus.jpg',
+  './images/focus-train.jpg', './images/focus-study.webp'
 ];
 
 self.addEventListener('install', e => {

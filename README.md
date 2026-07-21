@@ -23,6 +23,15 @@ can see the other's check-ins live. 🌙☕
 
 That's it — no accounts to create, nothing to install on a computer.
 
+### Pick your vibe 🎨
+In **⚙️ Settings → My look** each of you can choose a theme, and it's *yours* —
+it follows your account onto every device you log in on:
+- **☕ Cozy** — warm cream & latte, soft and calm.
+- **🌙 Focus** — dark, moody "grind" mode with gym/study energy.
+
+Alani can be Cozy while Buhle is Focus at the same time. To add more photos or
+change which picture appears where, edit the `THEMES` block near the top of `index.html`.
+
 ---
 
 ## What's inside (the tabs)

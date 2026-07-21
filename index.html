@@ -48,7 +48,56 @@
   --shadow-sm: 0 2px 8px rgba(90,60,35,.08);
   --radius:    18px;
   --radius-sm: 12px;
+
+  /* Translucent bar backgrounds (topbar/tabs/botnav) — themed for glass effect */
+  --glass:     rgba(253,248,241,.86);
+  --glass-2:   rgba(243,233,219,.9);
+  --input-bg:  #ffffff;
+  --toast-bg:  var(--ink);
+  --toast-ink: #ffffff;
+  --glow:      rgba(230,179,101,.18);
 }
+
+/* ===========================================================================
+   🌙 FOCUS THEME  (dark / gym / grind aesthetic)
+   Every colour is just an override of the variables above, so switching a
+   single attribute (data-theme="focus") re-skins the entire app.
+   =========================================================================== */
+:root[data-theme="focus"]{
+  --bg:        #15120e;
+  --bg-2:      #0d0b08;
+  --card:      #221c15;
+  --card-2:    #2b241b;
+  --ink:       #f4ece0;
+  --ink-soft:  #c3b4a0;
+  --ink-faint: #8b7c6a;
+  --latte:     #e6b365;
+  --latte-dk:  #d69a3d;
+  --gold:      #e6b365;
+  --gold-soft: #4a3a1e;
+  --cream-line:#3a3229;
+  --alani:     #e6b365;   /* gold */
+  --alani-bg:  #2e2617;
+  --buhle:     #a7b98a;   /* sage */
+  --buhle-bg:  #232a1c;
+  --good:      #9cb877;
+  --warn:      #e0a256;
+  --shadow:    0 6px 22px rgba(0,0,0,.5);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,.4);
+  --glass:     rgba(21,18,14,.88);
+  --glass-2:   rgba(13,11,8,.9);
+  --input-bg:  #191510;
+  --toast-bg:  #2b241b;
+  --toast-ink: #f4ece0;
+  --glow:      rgba(230,179,101,.12);
+}
+/* A couple of surfaces used hardcoded light colours — point them at variables. */
+:root[data-theme="focus"] .seg button.on{ background:#312a20; color:var(--ink); }
+:root[data-theme="focus"] .alert{ background:#2a2114; border-color:#4a3a20; color:#ecca8d; }
+:root[data-theme="focus"] .pill.pending{ background:#4a3a1e; color:#f0d59a; }
+:root[data-theme="focus"] .pill.completed{ background:#2f4023; color:#c3e0a0; }
+:root[data-theme="focus"] .pill.overdue{ background:#4a2a1c; color:#f0b48f; }
+:root[data-theme="focus"] .banner img[data-contain]{ background:#221c15; }
 
 *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html,body{ margin:0; padding:0; }
@@ -56,7 +105,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   color:var(--ink);
   background:
-    radial-gradient(1200px 500px at 100% -10%, rgba(230,179,101,.18), transparent 60%),
+    radial-gradient(1200px 500px at 100% -10%, var(--glow), transparent 60%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   background-repeat:no-repeat;
   min-height:100dvh;
@@ -109,7 +158,7 @@ a{ color:var(--latte-dk); }
 .login-body label{ font-size:.85rem; color:var(--ink-soft); display:block; margin:10px 0 4px; }
 input,select,textarea{
   width:100%; padding:12px 14px; border-radius:var(--radius-sm);
-  border:1.5px solid var(--cream-line); background:#fff; color:var(--ink); font-size:1rem;
+  border:1.5px solid var(--cream-line); background:var(--input-bg); color:var(--ink); font-size:1rem;
   font-family:inherit;
 }
 input:focus,select:focus,textarea:focus{ outline:none; border-color:var(--latte); box-shadow:0 0 0 3px rgba(201,138,94,.15); }
@@ -122,7 +171,7 @@ input:focus,select:focus,textarea:focus{ outline:none; border-color:var(--latte)
   position:sticky; top:0; z-index:30;
   display:flex; align-items:center; gap:10px; padding:12px 16px calc(12px + env(safe-area-inset-top,0));
   padding-top:max(12px, env(safe-area-inset-top,0));
-  background:rgba(253,248,241,.86); backdrop-filter:blur(8px);
+  background:var(--glass); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--cream-line);
 }
 .topbar .brand{ font-family:Georgia,serif; font-weight:700; font-size:1.15rem; display:flex; align-items:center; gap:6px; }
@@ -142,7 +191,7 @@ input:focus,select:focus,textarea:focus{ outline:none; border-color:var(--latte)
 /* Horizontal scrolling tab bar (works great on phones) */
 .tabs{
   position:sticky; top:0; z-index:20; display:flex; gap:8px; overflow-x:auto; padding:10px 14px;
-  background:rgba(243,233,219,.9); backdrop-filter:blur(6px);
+  background:var(--glass-2); backdrop-filter:blur(6px);
   border-bottom:1px solid var(--cream-line); scrollbar-width:none;
 }
 .tabs::-webkit-scrollbar{ display:none; }
@@ -187,7 +236,7 @@ section{ animation:fade .25s ease; }
 /* Toggle (✓/✗) */
 .toggle{
   display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px;
-  border:1.5px solid var(--cream-line); background:#fff; font-weight:600; color:var(--ink-soft);
+  border:1.5px solid var(--cream-line); background:var(--input-bg); font-weight:600; color:var(--ink-soft);
   user-select:none;
 }
 .toggle.on{ background:var(--good); color:#fff; border-color:transparent; }
@@ -197,7 +246,7 @@ section{ animation:fade .25s ease; }
 .scale{ display:flex; gap:6px; flex-wrap:wrap; }
 .scale button{
   width:38px; height:38px; border-radius:12px; border:1.5px solid var(--cream-line);
-  background:#fff; color:var(--ink-soft); font-weight:700; font-size:.95rem;
+  background:var(--input-bg); color:var(--ink-soft); font-weight:700; font-size:.95rem;
 }
 .scale button.sel{ background:linear-gradient(180deg,var(--gold),#d99a45); color:#4a3316; border-color:transparent; }
 .meals .scale button.sel{ background:var(--good); color:#fff; }
@@ -205,10 +254,10 @@ section{ animation:fade .25s ease; }
 /* Chips (subjects) */
 .chips{ display:flex; flex-wrap:wrap; gap:8px; }
 .chip{
-  padding:7px 12px; border-radius:999px; border:1.5px solid var(--cream-line); background:#fff;
+  padding:7px 12px; border-radius:999px; border:1.5px solid var(--cream-line); background:var(--input-bg);
   font-size:.85rem; font-weight:600; color:var(--ink-soft);
 }
-.chip.sel{ background:var(--latte-bg,#f7e9d8); border-color:var(--latte); color:var(--latte-dk); }
+.chip.sel{ background:var(--card-2); border-color:var(--latte); color:var(--latte-dk); }
 
 /* Stat tiles */
 .stat{ background:var(--card-2); border-radius:var(--radius-sm); padding:12px; text-align:center; border:1px solid var(--cream-line); }
@@ -245,7 +294,7 @@ section{ animation:fade .25s ease; }
 
 /* Check-off circle for goals */
 .check{
-  width:26px; height:26px; border-radius:50%; border:2px solid var(--cream-line); background:#fff;
+  width:26px; height:26px; border-radius:50%; border:2px solid var(--cream-line); background:var(--input-bg);
   display:grid; place-items:center; font-size:.9rem; color:transparent; flex:0 0 auto;
 }
 .check.on{ background:var(--good); border-color:transparent; color:#fff; }
@@ -263,7 +312,7 @@ section{ animation:fade .25s ease; }
 /* Toast */
 #toast{
   position:fixed; left:50%; bottom:96px; transform:translateX(-50%) translateY(20px);
-  background:var(--ink); color:#fff; padding:12px 18px; border-radius:999px; font-weight:600;
+  background:var(--toast-bg); color:var(--toast-ink); padding:12px 18px; border-radius:999px; font-weight:600;
   box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:all .3s ease; z-index:60; max-width:90vw; text-align:center;
 }
 #toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
@@ -276,7 +325,7 @@ section{ animation:fade .25s ease; }
 /* Bottom quick-nav */
 .botnav{
   position:fixed; left:0; right:0; bottom:0; z-index:40; display:flex; justify-content:space-around;
-  background:rgba(253,248,241,.94); backdrop-filter:blur(10px); border-top:1px solid var(--cream-line);
+  background:var(--glass); backdrop-filter:blur(10px); border-top:1px solid var(--cream-line);
   padding:6px 4px calc(6px + env(safe-area-inset-bottom,0));
 }
 .botnav button{ border:none; background:transparent; display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 10px; color:var(--ink-faint); font-size:.68rem; font-weight:600; border-radius:12px; }
@@ -294,7 +343,7 @@ section{ animation:fade .25s ease; }
 <div id="loginView">
   <div class="login-card">
     <div class="login-hero">
-      <img src="images/squad.png" alt="Friends being cool together">
+      <img id="loginHero" src="images/squad.png" alt="Motivation">
       <div class="veil"></div>
       <div class="title">
         <h1>Accountabuddy 💛</h1>
@@ -384,6 +433,7 @@ const CONFIG = {
     screenGoal:  3.0,       // hours of screen time to stay under
     plannedGym:  3,         // gym sessions you aim for per week
     plannedStudyDays: 5,    // study days you aim for per week
+    theme:       'cozy',    // 'cozy' (cream) or 'focus' (dark/gym) — each buddy's own choice
   },
 
   /* Subjects offered as quick tags on the check-in (add/remove freely). */
@@ -419,6 +469,41 @@ const PEOPLE = {
   alani: { name:'Alani', color:'var(--alani)', bg:'var(--alani-bg)', initial:'A' },
   buhle: { name:'Buhle', color:'var(--buhle)', bg:'var(--buhle-bg)', initial:'B' },
 };
+
+/* -------------------------------------------------------------------- THEMES
+   Two looks. Each person picks one in Settings; it syncs to their account.
+   Each theme maps a "slot" (where a banner appears) to a photo. To swap a
+   picture, just change the filename here. */
+const THEMES = {
+  cozy: {
+    label:'☕ Cozy',  themeColor:'#c98a5e',
+    banners:{ login:'images/squad.png', home:'images/cozy-window.jpg',
+              goals:'images/future-self.jpg', agreement:'images/squad.png' },
+    contain:{ agreement:true, login:false },   // squad art sits on a solid panel
+  },
+  focus: {
+    label:'🌙 Focus', themeColor:'#15120e',
+    banners:{ login:'images/focus-desk.jpg', home:'images/focus-gym.jpg',
+              goals:'images/focus-campus.jpg', agreement:'images/focus-train.jpg' },
+    contain:{ agreement:false, login:false },
+  },
+};
+/* The theme currently in effect: the logged-in person's choice, else the last
+   one used on this device (so the login screen already matches), else cozy. */
+function activeTheme(){
+  if(ME && DATA[ME] && DATA[ME].settings && DATA[ME].settings.theme) return DATA[ME].settings.theme;
+  try{ return localStorage.getItem('aab_theme') || 'cozy'; }catch(e){ return 'cozy'; }
+}
+function banner(slot){ const t=THEMES[activeTheme()]||THEMES.cozy; return t.banners[slot] || THEMES.cozy.banners[slot]; }
+/* Apply a theme to the whole document + remember it for next launch. */
+function applyTheme(name){
+  const t = THEMES[name] ? name : 'cozy';
+  document.documentElement.setAttribute('data-theme', t);
+  try{ localStorage.setItem('aab_theme', t); }catch(e){}
+  const meta=document.querySelector('meta[name="theme-color"]'); if(meta) meta.setAttribute('content', THEMES[t].themeColor);
+  // Keep the login hero in sync with the remembered theme.
+  const hero=document.getElementById('loginHero'); if(hero) hero.src = THEMES[t].banners.login;
+}
 
 /* --------------------------------------------------------------- APP STATE */
 let ME = null, BUDDY = null;                 // 'alani' / 'buhle'
@@ -636,7 +721,7 @@ RENDER.home = (c)=>{
   c.append(el(`
     <div class="card pad-0">
       <div class="banner">
-        <img src="images/cozy-window.jpg" alt="Cozy evening">
+        <img src="${banner('home')}" alt="">
         <div class="veil"></div>
         <div class="cap">${greeting()}, ${PEOPLE[ME].name} ✨</div>
       </div>
@@ -970,7 +1055,7 @@ RENDER.weekly = (c)=>{
 /* -------------------------------------------------------------- GOALS */
 RENDER.goals = (c)=>{
   c.append(el(`
-    <div class="card pad-0"><div class="banner"><img src="images/future-self.jpg" alt="Do it for your future self"><div class="veil"></div><div class="cap">Long-Term Goals 🎯</div></div></div>
+    <div class="card pad-0"><div class="banner"><img src="${banner('goals')}" alt=""><div class="veil"></div><div class="cap">Long-Term Goals 🎯</div></div></div>
     <div class="alert calm"><span>🗓️</span><div>You review these together every <b>Sunday</b>. Tick them off as you go — future you is watching. 💛</div></div>
   `));
   const card = el(`<div class="card" id="goalList"></div>`);
@@ -1125,7 +1210,7 @@ function consequenceRow(x, compact){
 /* -------------------------------------------------------------- AGREEMENT */
 RENDER.agreement = (c)=>{
   c.append(el(`
-    <div class="card pad-0"><div class="banner"><img src="images/squad.png" style="background:#fff;object-fit:contain" alt="Better together"><div class="veil"></div><div class="cap">Our Accountabuddy Pact 🤝</div></div></div>
+    <div class="card pad-0"><div class="banner"><img src="${banner('agreement')}" ${THEMES[activeTheme()].contain.agreement?'data-contain style="background:#fff;object-fit:contain"':''} alt=""><div class="veil"></div><div class="cap">Our Accountabuddy Pact 🤝</div></div></div>
     <div class="card">
       <p class="pact"><b>We commit to:</b></p>
       <ul class="pact">
@@ -1145,6 +1230,27 @@ RENDER.agreement = (c)=>{
 RENDER.settings = (c)=>{
   const s = DATA[ME].settings;
   c.append(el(`<div class="section-title"><span class="emoji">⚙️</span><h2 style="margin:0">My Settings</h2></div>`));
+
+  // Theme picker (your own — syncs to your account on every device)
+  const cur = s.theme || 'cozy';
+  const themeCard = el(`<div class="card">
+    <h3>🎨 My look</h3>
+    <p class="faint">Just yours — ${PEOPLE[BUDDY].name} can pick a different vibe.</p>
+    <div class="seg" id="themePick" style="width:100%">
+      <button data-theme-pick="cozy"  class="${cur==='cozy'?'on':''}"  style="flex:1">☕ Cozy</button>
+      <button data-theme-pick="focus" class="${cur==='focus'?'on':''}" style="flex:1">🌙 Focus</button>
+    </div>
+    <p class="faint" style="margin-top:8px">Cozy = warm & cream. Focus = dark & grind. 💪</p>
+  </div>`);
+  c.append(themeCard);
+  $('#themePick', themeCard).addEventListener('click', e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    s.theme = b.dataset.themePick;
+    applyTheme(s.theme); saveLocal(); pushMine();
+    render();                       // redraw settings + reflect new banners next time
+    toast(s.theme==='focus'?'🌙 Focus mode on':'☕ Cozy mode on');
+  });
+
   const card = el(`<div class="card">
     <p class="faint">These targets are just yours — ${PEOPLE[BUDDY].name} can set different ones.</p>
     ${numField('💧 Water goal (litres)','waterGoal',s.waterGoal,'2','0.25','0','10')}
@@ -1250,6 +1356,7 @@ function applyRow(owner,data,ts){
   else { DATA[owner].checkins=data.checkins||{}; DATA[owner].weekly=data.weekly||{}; DATA[owner].settings=Object.assign({...CONFIG.defaultSettings},data.settings||{}); }
   lastTs[owner]=ts||Date.now();
   applyingRemote=false;
+  if(owner===ME) applyTheme(activeTheme());   // a theme change from my other device
   saveLocal();
 }
 /* Don't redraw while a text field is focused (would eat keystrokes). */
@@ -1311,6 +1418,7 @@ function login(user){
   // Update header
   $('#meName').textContent=PEOPLE[ME].name; $('#meAvatar').textContent=PEOPLE[ME].initial;
   $('#meAvatar').style.background=PEOPLE[ME].color;
+  applyTheme(activeTheme());               // reflect my saved look immediately
   $('#loginView').classList.add('hidden'); $('#appView').classList.remove('hidden');
   buildNav(); go('home');
   initSync();
@@ -1332,6 +1440,7 @@ $('#meBadge').onclick = ()=>{ if(confirm('Log out?')) logout(); };
 $('#luser').addEventListener('change', ()=>{ $('#lpass').value=''; $('#loginErr').textContent=''; });
 
 loadLocal();
+applyTheme((function(){ try{ return localStorage.getItem('aab_theme'); }catch(e){ return null; } })() || 'cozy');
 // Auto-resume the last logged-in buddy on this device.
 (function(){ let last=null; try{ last=localStorage.getItem(LS_USER); }catch(e){} if(last && CONFIG.accounts[last]) login(last); })();
 
