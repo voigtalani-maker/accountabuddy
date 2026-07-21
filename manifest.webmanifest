@@ -1,0 +1,17 @@
+{
+  "name": "Accountabuddy",
+  "short_name": "Accountabuddy",
+  "description": "A warm daily accountability app for two matric buddies — check in, earn points, stay better together.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3e9db",
+  "theme_color": "#c98a5e",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
